@@ -4,6 +4,7 @@ import com.nhnacademy.testtest.dto.proejctmember.CreateProjectMemberRequest;
 import com.nhnacademy.testtest.entity.Project;
 import com.nhnacademy.testtest.entity.ProjectMember;
 import com.nhnacademy.testtest.entity.Role;
+import com.nhnacademy.testtest.exception.ProjectNullPointException;
 import com.nhnacademy.testtest.service.project.ProjectService;
 import com.nhnacademy.testtest.service.projectmember.ProjectMemberService;
 import java.util.Optional;
@@ -28,7 +29,7 @@ public class ProjectMemberController {
         Optional<Project> projectById = projectService.getProjectById(projectId);
         Project project = projectById.orElse(null);
         if(project == null) {
-            throw new
+            throw new ProjectNullPointException("project is null");
         }
         ProjectMember projectMember = new ProjectMember(request.getName(),request.getEmail(), Role.valueOf(request.getRole()), project);
         return ResponseEntity.ok().body(projectMember);
