@@ -1,10 +1,13 @@
 package com.nhnacademy.testtest.service.task.impl;
 
 
+import com.nhnacademy.testtest.dto.milestone.MileStoneDto;
 import com.nhnacademy.testtest.dto.task.TaskRequest;
+import com.nhnacademy.testtest.entity.MileStone;
 import com.nhnacademy.testtest.entity.Task;
 import com.nhnacademy.testtest.exception.TaskNotFoundException;
 import com.nhnacademy.testtest.repository.TaskRepository;
+import com.nhnacademy.testtest.service.milestone.MileStoneService;
 import com.nhnacademy.testtest.service.task.TaskService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +23,7 @@ import java.util.List;
 public class TaskServiceImpl implements TaskService {
 
     private final TaskRepository taskRepository;
-//    private final MileStoneService mileStoneService;
+    private final MileStoneService mileStoneService;
 
 
     @Override
@@ -43,8 +46,9 @@ public class TaskServiceImpl implements TaskService {
         Task task = new Task();
         task.setTitle(taskModifyRequest.getTitle());
         task.setContent(taskModifyRequest.getContent());
-//        task.setTag(taskModifyRequest.getTag());
-//       MileStone mileStone = mileStoneService.getMileStoneById(taskModifyRequest.getMileStoneId()); 추후에 MileStone 로직 다 완성되면 동작가능
+
+        MileStone mileStone = mileStoneService.getMileStoneById(taskModifyRequest.getMileStoneId());
+        task.setMileStone(mileStone);
 // 임시코드
 
         taskRepository.save(task);

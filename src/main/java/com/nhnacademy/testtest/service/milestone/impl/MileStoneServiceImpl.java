@@ -53,4 +53,14 @@ public class MileStoneServiceImpl implements MileStoneService {
     public List<MileStoneDto> getAllMileStones() {
         return mileStoneRepository.findAllBy();
     }
+
+    @Override
+    public MileStone getMileStoneById(Long id){
+
+        return mileStoneRepository.findMileStoneById(id).orElseThrow(
+                ()->new MileStoneNullPointException("해당 아이디의 마일스톤이 존재하지 않습니다"));
+
+
+    }
+
 }
