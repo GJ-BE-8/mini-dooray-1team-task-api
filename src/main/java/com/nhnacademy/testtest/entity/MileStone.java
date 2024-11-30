@@ -3,11 +3,8 @@ package com.nhnacademy.testtest.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.time.LocalDateTime;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 
 @Entity
 @NoArgsConstructor
@@ -25,9 +22,8 @@ public class MileStone {
     @Setter
     private Project project;
 
-    public MileStone(String name, LocalDateTime startTime, LocalDateTime endTime, Project project) {
+    public MileStone(String name, Project project) {
         this.name = name;
-        this.startTime = startTime;
-        this.endTime = endTime;
+        this.project = project;
     }
 }

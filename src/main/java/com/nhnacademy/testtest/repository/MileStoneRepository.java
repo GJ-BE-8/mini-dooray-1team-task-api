@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface MileStoneRepository extends JpaRepository<MileStone, Long> {
 
-    @Query("select new com.nhnacademy.testtest.dto.milestone.MileStoneDto(m.name,m.startTime,m.endTime) from MileStone m")
+    @Query("select new com.nhnacademy.testtest.dto.milestone.MileStoneDto(m.name) from MileStone m")
     List<MileStoneDto> findAllBy();
 }

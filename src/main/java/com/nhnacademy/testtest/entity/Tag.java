@@ -19,7 +19,6 @@ public class Tag {
 
     @Setter
     @ManyToOne
-    @Setter
     private Project project;
 
     public Tag(String name, Project project) {

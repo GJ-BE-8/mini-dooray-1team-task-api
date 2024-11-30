@@ -42,7 +42,7 @@ public class TaskServiceImpl implements TaskService {
 
         Task task = new Task();
         task.setTitle(taskModifyRequest.getTitle());
-        task.setStatus(taskModifyRequest.getStatus());
+        task.setContent(taskModifyRequest.getContent());
         task.setTag(taskModifyRequest.getTag());
 //       MileStone mileStone = mileStoneService.getMileStoneById(taskModifyRequest.getMileStoneId()); 추후에 MileStone 로직 다 완성되면 동작가능
 // 임시코드
@@ -56,7 +56,7 @@ public class TaskServiceImpl implements TaskService {
         
         Task task = taskRepository.findById(taskId).orElseThrow(()->new TaskNotFoundException("해당 ID의 Task 존재하지 않습니다"));
         task.setTitle(taskModifyRequest.getTitle());
-        task.setStatus(taskModifyRequest.getStatus());
+        task.setContent(taskModifyRequest.getContent());
         task.setTag(taskModifyRequest.getTag());
         // 마일스톤 수정도 추가해야함
 

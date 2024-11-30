@@ -9,7 +9,7 @@ public class TaskRequest {
 
     private String tag;
 
-    private String status;
+    private String content;
 
     private Long mileStoneId;
 
