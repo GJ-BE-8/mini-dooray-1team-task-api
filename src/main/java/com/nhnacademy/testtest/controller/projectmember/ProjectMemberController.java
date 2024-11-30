@@ -31,7 +31,7 @@ public class ProjectMemberController {
         if(project == null) {
             throw new ProjectNullPointException("project is null");
         }
-        ProjectMember projectMember = new ProjectMember(request.getName(),request.getEmail(), Role.valueOf(request.getRole()), project);
+        ProjectMember projectMember = projectMemberService.createProjectMember(request, project);
         return ResponseEntity.ok().body(projectMember);
     }
 }

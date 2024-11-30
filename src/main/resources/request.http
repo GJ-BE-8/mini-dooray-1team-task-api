@@ -1,0 +1,10 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=IntelliJ IDEA
+
+###
+http://localhost:8080/api/project?memberId=1
+
+
+###
+http://localhost:8080/api/milestone

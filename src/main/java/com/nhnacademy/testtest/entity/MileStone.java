@@ -6,8 +6,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import java.time.LocalDateTime;
+import lombok.NoArgsConstructor;
 
 @Entity
+@NoArgsConstructor
 public class MileStone {
 
     @Id
@@ -19,4 +21,10 @@ public class MileStone {
 
     @ManyToOne
     private Project project;
+
+    public MileStone(String name, LocalDateTime startTime, LocalDateTime endTime, Project project) {
+        this.name = name;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
 }

@@ -1,6 +1,7 @@
 package com.nhnacademy.testtest.service.project.impl;
 
 import com.nhnacademy.testtest.dto.project.CreateProjectRequest;
+import com.nhnacademy.testtest.dto.project.ProjectDto;
 import com.nhnacademy.testtest.entity.Project;
 import com.nhnacademy.testtest.exception.ProjectNullPointException;
 import com.nhnacademy.testtest.repository.ProjectRepository;
@@ -30,7 +31,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<Project> getAllByProjectMemberId(Long projectMemberId) {
+    public List<ProjectDto> getAllByProjectMemberId(Long projectMemberId) {
         return projectRepository.findByProjectMemberId(projectMemberId);
     }
 
