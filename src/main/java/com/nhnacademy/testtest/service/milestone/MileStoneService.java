@@ -14,4 +14,6 @@ public interface MileStoneService {
 
     void deleteMileStone(long id);
     List<MileStoneDto> getAllMileStones();
+
+    MileStone getMileStoneById(Long id);
 }
