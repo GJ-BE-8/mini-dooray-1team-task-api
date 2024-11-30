@@ -1,5 +1,6 @@
 package com.nhnacademy.testtest.service.task.impl;
 
+
 import com.nhnacademy.testtest.dto.task.TaskRequest;
 import com.nhnacademy.testtest.entity.Task;
 import com.nhnacademy.testtest.exception.TaskNotFoundException;
@@ -67,7 +68,5 @@ public class TaskServiceImpl implements TaskService {
     public void deleteTask(Long taskId){
         taskRepository.deleteById(taskId);
     }
-
-
 
 }

@@ -5,12 +5,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import lombok.NoArgsConstructor
 import lombok.Getter;
 import lombok.Setter;
-
 import java.time.LocalDateTime;
 
 @Entity
+@NoArgsConstructor
 @Getter
 public class Comment {
 
@@ -30,5 +31,12 @@ public class Comment {
 
     @ManyToOne
     private Task task;
+
+    public Comment(String content, LocalDateTime date, Task task, ProjectMember projectMember) {
+        this.content = content;
+        this.date = date;
+        this.task = task;
+        this.projectMember = projectMember;
+    }
 
 }

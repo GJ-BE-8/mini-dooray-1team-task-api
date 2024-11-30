@@ -22,10 +22,12 @@ public class ProjectMember {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Setter
     @Column(nullable = false)
     @Setter
     private String name;
 
+    @Setter
     @NonNull
     @Setter
     private String email;
@@ -33,6 +35,7 @@ public class ProjectMember {
     @Setter
     private Role role;
 
+    @Setter
     @ManyToOne
     @Setter
     private Project project;
