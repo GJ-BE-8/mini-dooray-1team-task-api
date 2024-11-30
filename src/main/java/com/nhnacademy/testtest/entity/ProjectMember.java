@@ -7,11 +7,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.Setter;
 
 @Entity
 @NoArgsConstructor
+@Getter
 public class ProjectMember {
 
 
@@ -20,18 +23,19 @@ public class ProjectMember {
     private long id;
 
     @Column(nullable = false)
+    @Setter
     private String name;
 
     @NonNull
+    @Setter
     private String email;
 
+    @Setter
     private Role role;
 
     @ManyToOne
-    @JoinColumn(name = "project_id")
+    @Setter
     private Project project;
-
-
 
     public ProjectMember(String name, String email, Role role, Project project) {
         this.name = name;
