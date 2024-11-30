@@ -7,6 +7,8 @@ import lombok.Data;
 @AllArgsConstructor
 public class CommentDto {
 
+    Long id;
+
     String content;
 
     String author;
