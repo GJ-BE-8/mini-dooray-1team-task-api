@@ -29,4 +29,13 @@ public class ProjectMemberServiceImpl implements ProjectMemberService {
         }
         return save;
     }
+
+
+    // 추가된내용!
+    @Override
+    public ProjectMember getProjectMemberById(Long id){
+        return projectMemberRepository.findById(id).orElseThrow(
+                ()-> new ProjectMemberNullPointException("해당 ID의 ProjectMember가 존재하지 않습니다")
+        );
+    }
 }

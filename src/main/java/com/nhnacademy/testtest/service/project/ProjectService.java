@@ -10,7 +10,7 @@ public interface ProjectService {
 
     Project createProject(CreateProjectRequest createCommendProject);
 
-    List<ProjectDto> getAllByProjectMemberId(Long projectMemberId);
+//    List<ProjectDto> getAllByProjectMemberId(Long projectMemberId);
 
-    Optional<Project> getProjectById(Long projectId);
+    Project getProjectById(Long projectId);
 }

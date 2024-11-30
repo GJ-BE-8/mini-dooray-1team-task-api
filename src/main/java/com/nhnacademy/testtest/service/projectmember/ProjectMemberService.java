@@ -9,4 +9,6 @@ public interface ProjectMemberService {
 
 
     ProjectMember createProjectMember(CreateProjectMemberRequest createCommendProjectMember, Project project);
+
+    ProjectMember getProjectMemberById(Long id);
 }

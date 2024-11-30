@@ -1,14 +1,13 @@
 package com.nhnacademy.testtest.service.tag.impl;
 
 import com.nhnacademy.testtest.dto.tag.CreateTagRequest;
-import com.nhnacademy.testtest.dto.tag.TagDto;
+import com.nhnacademy.testtest.dto.tag.ModifyTagRequest;
 import com.nhnacademy.testtest.entity.Project;
 import com.nhnacademy.testtest.entity.Tag;
 import com.nhnacademy.testtest.exception.TagNullPointException;
 import com.nhnacademy.testtest.repository.TagRepository;
 import com.nhnacademy.testtest.service.project.ProjectService;
 import com.nhnacademy.testtest.service.tag.TagService;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,18 +19,18 @@ public class TagServiceImpl implements TagService {
     private final ProjectService projectService;
 
     @Override
-    public Tag createTag(CreateTagRequest request, Long projectId) {
-        Project project = projectService.getProjectById(projectId).orElse(null);
+    public Tag createTag(CreateTagRequest request) {
+        Project project = projectService.getProjectById(request.getProjectId());
         Tag tag = new Tag(request.getName(), project);
         return tagRepository.save(tag);
     }
 
     @Override
-    public Tag updateTag(CreateTagRequest request, Long tagId) {
-        Tag tag = tagRepository.findById(tagId).orElse(null);
-        if(tag == null) {
-            throw new TagNullPointException("tag id null");
-        }
+    public Tag updateTag(ModifyTagRequest request) {
+        Tag tag = tagRepository.findById(request.getId()).orElseThrow(
+                () -> new TagNullPointException("해당하는 아이디의 태그가 존재하지 않습니다")
+        );
+
         tag.setName(request.getName());
         return tagRepository.save(tag);
     }
@@ -41,8 +40,11 @@ public class TagServiceImpl implements TagService {
         tagRepository.deleteById(tagId);
     }
 
+    // 수정한내용
     @Override
-    public Optional<TagDto> getTagById(Long tagId) {
-        return tagRepository.findTagDtoById(tagId);
+    public Tag getTagById(Long tagId) {
+        return tagRepository.getTagById(tagId).orElseThrow(
+                ()->new TagNullPointException("해당 아이디의 tag가 존재하지 않습니다")
+        );
     }
 }

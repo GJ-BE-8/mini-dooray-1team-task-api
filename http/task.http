@@ -1,0 +1,149 @@
+### task 조회
+GET http://localhost:8080/task/1
+
+### 프로젝트의 task 전체 조회
+GET http://localhost:8080/task
+
+### task 등록
+POST http://localhost:8080/task
+Content-Type: Application/json
+
+{
+  "title": "테스트업무2",
+  "content": "테스트입니다",
+  "status": "TODO2",
+  "tag": "Frontend2",
+  "projectId": 1,
+  "projectMemberId": 1,
+  "mileStoneId": 13,
+  "tagId": 1
+}
+
+### task 등록 (이미 사용된 마일스톤으로 등록시도시)
+POST http://localhost:8080/task
+Content-Type: Application/json
+
+{
+  "title": "테스트업무2",
+  "content": "테스트입니다",
+  "status": "TODO2",
+  "tag": "Frontend2",
+  "projectId": 1,
+  "projectMemberId": 1,
+  "mileStoneId": 11,
+  "tagId": 1
+}
+
+### task 등록 (존재 x 마일스톤으로 등록시도시)
+POST http://localhost:8080/task
+Content-Type: Application/json
+
+{
+  "title": "테스트업무2",
+  "content": "테스트입니다",
+  "status": "TODO",
+  "projectId": 1,
+  "projectMemberId": 1,
+  "mileStoneId": 999999,
+  "tagId": 1
+}
+
+### task 등록 (존재 x projectId로 등록시도시)
+POST http://localhost:8080/task
+Content-Type: Application/json
+
+{
+  "title": "테스트업무2",
+  "content": "테스트입니다",
+  "status": "TODO",
+  "projectId": 999999,
+  "projectMemberId": 1,
+  "mileStoneId": 11,
+  "tagId": 1
+}
+
+### task 등록 (존재 x projectMemberId로 등록시도시)
+POST http://localhost:8080/task
+Content-Type: Application/json
+
+{
+  "title": "테스트업무2",
+  "content": "테스트입니다",
+  "status": "TODO",
+  "projectId": 1,
+  "projectMemberId": 999999,
+  "mileStoneId": 11,
+  "tagId": 1
+}
+
+
+### task 등록 (존재 x tagId로 등록시도시)
+POST http://localhost:8080/task
+Content-Type: Application/json
+
+{
+  "title": "테스트업무2",
+  "content": "테스트입니다",
+  "status": "TODO",
+  "projectId": 1,
+  "projectMemberId": 1,
+  "mileStoneId": 1,
+  "tagId": 999999
+}
+
+
+### task 수정
+PUT http://localhost:8080/task
+Content-Type: Application/json
+
+{
+  "id": 1,
+  "title": "수정이",
+  "content": "테스트입니다",
+  "status": "잘됐는지",
+  "tag": "확인확인",
+  "mileStoneId": 1,
+  "tagId": 1
+}
+
+### task 수정 (이미 사용된 마일스톤으로 등록시도시)
+PUT http://localhost:8080/task
+Content-Type: Application/json
+
+{
+  "id": 1,
+  "title": "수정이",
+  "content": "테스트입니다",
+  "status": "잘됐는지",
+  "mileStoneId": 1,
+  "tagId": 1
+}
+
+### task 수정 (존재 x 마일스톤으로 등록시도시)
+PUT http://localhost:8080/task
+Content-Type: Application/json
+
+{
+  "id": 1,
+  "title": "수정이",
+  "content": "테스트입니다",
+
+  "status": "잘됐는지",
+  "mileStoneId": 999999,
+  "tagId": 1
+}
+
+### task 수정 (존재 x tag로 등록시도시)
+PUT http://localhost:8080/task
+Content-Type: Application/json
+
+{
+  "id": 1,
+  "title": "수정이",
+  "status": "잘됐는지",
+  "mileStoneId": 1,
+  "tagId": 999999
+}
+
+### task 삭제
+DELETE http://localhost:8080/task/6

@@ -42,12 +42,12 @@ public class ProjectController {
 
 
     //프로젝트 맴버아이디로 프로젝트리스트 조회
-    @GetMapping
-    public ResponseEntity<List<ProjectDto>> projectList(@RequestParam Long memberId) {
-        List<ProjectDto> allByProjectMemberId = projectService.getAllByProjectMemberId(memberId);
-
-        return ResponseEntity.ok(allByProjectMemberId);
-    }
+//    @GetMapping
+//    public ResponseEntity<List<ProjectDto>> projectList(@RequestParam Long memberId) {
+//        List<ProjectDto> allByProjectMemberId = projectService.getAllByProjectMemberId(memberId);
+//
+//        return ResponseEntity.ok(allByProjectMemberId);
+//    }
 
 
 

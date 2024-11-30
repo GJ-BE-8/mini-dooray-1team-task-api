@@ -7,6 +7,8 @@ import lombok.Setter;
 @Setter
 public class CreateTagRequest {
 
+    Long projectId;
+
     String name;
 
 }

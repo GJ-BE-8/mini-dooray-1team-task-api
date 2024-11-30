@@ -1,13 +1,16 @@
 package com.nhnacademy.testtest.service.task.impl;
 
 
-import com.nhnacademy.testtest.dto.milestone.MileStoneDto;
-import com.nhnacademy.testtest.dto.task.TaskRequest;
-import com.nhnacademy.testtest.entity.MileStone;
-import com.nhnacademy.testtest.entity.Task;
+import com.nhnacademy.testtest.dto.task.TaskModifyRequest;
+import com.nhnacademy.testtest.dto.task.TaskPostRequest;
+import com.nhnacademy.testtest.entity.*;
+import com.nhnacademy.testtest.exception.DuplicatedMileStoneException;
 import com.nhnacademy.testtest.exception.TaskNotFoundException;
 import com.nhnacademy.testtest.repository.TaskRepository;
 import com.nhnacademy.testtest.service.milestone.MileStoneService;
+import com.nhnacademy.testtest.service.project.ProjectService;
+import com.nhnacademy.testtest.service.projectmember.ProjectMemberService;
+import com.nhnacademy.testtest.service.tag.TagService;
 import com.nhnacademy.testtest.service.task.TaskService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -24,12 +28,16 @@ public class TaskServiceImpl implements TaskService {
 
     private final TaskRepository taskRepository;
     private final MileStoneService mileStoneService;
+    private final ProjectService projectService;
+    private final ProjectMemberService projectMemberService;
+    private final TagService tagService;
 
 
     @Override
     public List<Task> getAllTasks(){
 
         return taskRepository.findAll();
+
     }
 
 
@@ -41,31 +49,53 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void postTask(TaskRequest taskModifyRequest){
+    public Task postTask(TaskPostRequest taskPostRequest){
 
         Task task = new Task();
+        task.setTitle(taskPostRequest.getTitle());
+        task.setContent(taskPostRequest.getContent());
+
+        // 추가된내용!
+        Project project = projectService.getProjectById(taskPostRequest.getProjectId());
+        ProjectMember projectMember = projectMemberService.getProjectMemberById(taskPostRequest.getProjectMemberId());
+        MileStone mileStone = mileStoneService.getMileStoneById(taskPostRequest.getMileStoneId());
+        Tag tag = tagService.getTagById(taskPostRequest.getTagId());
+
+        // 이미 같은 마일스톤 쓰고잇는 업무 잇다면 예외 발생 예외발생
+
+        Task alreadyAssignedMileStone = taskRepository.findTaskByMileStone(mileStone).orElse(null);
+        if(Objects.nonNull(alreadyAssignedMileStone)){
+          throw new DuplicatedMileStoneException("해당 마일스톤은 이미 다른 업무에 배정되어 있습니다");
+        }
+
+        task.setProject(project);
+        task.setProjectMember(projectMember);
+        task.setMileStone(mileStone);
+        task.setTag(tag);
+// 임시코드
+        return taskRepository.save(task);
+    }
+    
+    @Override
+    public Task modifyTask(TaskModifyRequest taskModifyRequest){
+        
+        Task task = taskRepository.findById(taskModifyRequest.getId()).orElseThrow(()->new TaskNotFoundException("해당 ID의 Task 존재하지 않습니다"));
         task.setTitle(taskModifyRequest.getTitle());
         task.setContent(taskModifyRequest.getContent());
 
         MileStone mileStone = mileStoneService.getMileStoneById(taskModifyRequest.getMileStoneId());
+        Tag tag = tagService.getTagById(taskModifyRequest.getTagId());
+
+        // 이미 같은 마일스톤 쓰고잇는 업무 잇다면 예외 발생
+
+        Task alreadyAssignedMileStone = taskRepository.findTaskByMileStone(mileStone).orElse(null);
+        if(Objects.nonNull(alreadyAssignedMileStone)){
+            throw new DuplicatedMileStoneException("해당 마일스톤은 이미 다른 업무에 배정되어 있습니다");
+        }
         task.setMileStone(mileStone);
-// 임시코드
+        task.setTag(tag);
 
-        taskRepository.save(task);
-        log.info("task 등록완료");
-    }
-    
-    @Override
-    public void modifyTask(Long taskId, TaskRequest taskModifyRequest){
-        
-        Task task = taskRepository.findById(taskId).orElseThrow(()->new TaskNotFoundException("해당 ID의 Task 존재하지 않습니다"));
-        task.setTitle(taskModifyRequest.getTitle());
-        task.setContent(taskModifyRequest.getContent());
-//        task.setTag(taskModifyRequest.getTag());
-        // 마일스톤 수정도 추가해야함
-
-        taskRepository.save(task);
-        log.info("task 수정완료");
+        return taskRepository.save(task);
     }
 
     @Override

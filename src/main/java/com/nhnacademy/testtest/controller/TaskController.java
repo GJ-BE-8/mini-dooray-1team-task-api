@@ -1,14 +1,13 @@
 package com.nhnacademy.testtest.controller;
 
-import com.nhnacademy.testtest.dto.task.TaskDto;
-import com.nhnacademy.testtest.dto.task.TaskRequest;
+import com.nhnacademy.testtest.dto.task.TaskModifyRequest;
+import com.nhnacademy.testtest.dto.task.TaskPostRequest;
 import com.nhnacademy.testtest.entity.Task;
 import com.nhnacademy.testtest.service.task.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -18,54 +17,37 @@ public class TaskController {
 
     private final TaskService taskService;
 
+    // 프로젝트의 Task 전체 가져오기
     @GetMapping
-    public List<TaskDto> getTasks(){
-
-        List<TaskDto> result= new ArrayList<>();
-
-        for(Task task : taskService.getAllTasks()){
-
-            TaskDto taskDto = new TaskDto();
-            taskDto.createTaskDto(task.getId(),task.getTitle(), task.getContent(),task.getMileStone().getId());
-
-            result.add(taskDto);
-        }
-
-        return result;
+    public List<Task> getTasks(){
+        return taskService.getAllTasks();
     }
 
     // TASK 갖고오기
     // 업무번호로 TASK 가져오기
     @GetMapping("/{taskId}")
-    public TaskDto getTask(@PathVariable Long taskId){
-
-        Task task = taskService.getTask(taskId);
-        TaskDto taskDto = new TaskDto();
-        taskDto.createTaskDto(task.getId(),task.getTitle(),task.getContent(),task.getMileStone().getId());
-
-        return taskDto;
+    public Task getTask(@PathVariable Long taskId){
+        return taskService.getTask(taskId);
     }
 
     // TASK 등록
     @PostMapping
-    public ResponseEntity postTask(@RequestBody TaskRequest taskPostRequest){
-        taskService.postTask(taskPostRequest);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Task> postTask(@RequestBody TaskPostRequest taskPostRequest){
+        Task task = taskService.postTask(taskPostRequest);
+        return ResponseEntity.ok(task);
     }
 
 
     // TASK 수정
     @PutMapping("/{taskId}")
-    public ResponseEntity  modifyTask(@PathVariable Long taskId, @RequestBody TaskRequest taskRequest){
-
-        taskService.modifyTask(taskId,taskRequest);
-
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Task>  modifyTask(@RequestBody TaskModifyRequest taskModifyRequest){
+        Task task = taskService.modifyTask(taskModifyRequest);
+        return ResponseEntity.ok(task);
     }
 
     // TASK 삭제
     @DeleteMapping("/{taskId}")
-    public ResponseEntity deleteTask(@PathVariable Long taskId){
+    public ResponseEntity<Task> deleteTask(@PathVariable Long taskId){
 
         taskService.deleteTask(taskId);
 

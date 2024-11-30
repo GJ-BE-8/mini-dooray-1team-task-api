@@ -30,13 +30,18 @@ public class ProjectServiceImpl implements ProjectService {
 
     }
 
-    @Override
-    public List<ProjectDto> getAllByProjectMemberId(Long projectMemberId) {
-        return projectRepository.findByProjectMemberId(projectMemberId);
-    }
+//    @Override
+//    public List<ProjectDto> getAllByProjectMemberId(Long projectMemberId) {
+//        return projectRepository.findByProjectMemberId(projectMemberId);
+//    }
 
     @Override
-    public Optional<Project> getProjectById(Long projectId) {
-        return projectRepository.findById(projectId);
+    public Project getProjectById(Long projectId) {
+
+        Project project = projectRepository.findById(projectId).orElseThrow(
+                ()->new ProjectNullPointException("해당 아이디의 프로젝트를 찾을수 없습니다")
+        );
+
+        return project;
     }
 }

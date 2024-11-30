@@ -24,10 +24,7 @@ public class ProjectMemberController {
 
     @PostMapping
     public ResponseEntity<ProjectMember> createProjectMember(@RequestBody CreateProjectMemberRequest request, @RequestParam Long projectId) {
-        Project project = projectService.getProjectById(projectId).orElse(null);
-        if(project == null) {
-            throw new ProjectNullPointException("project is null");
-        }
+        Project project = projectService.getProjectById(projectId);
         ProjectMember projectMember = projectMemberService.createProjectMember(request, project);
         return ResponseEntity.ok().body(projectMember);
     }

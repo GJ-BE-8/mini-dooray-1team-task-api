@@ -6,7 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CreateMileStoneRequest {
-    Long id;
 
     String name;
 

@@ -2,6 +2,7 @@ package com.nhnacademy.testtest.controller.milestone;
 
 import com.nhnacademy.testtest.dto.milestone.CreateMileStoneRequest;
 import com.nhnacademy.testtest.dto.milestone.MileStoneDto;
+import com.nhnacademy.testtest.dto.milestone.ModifyMileStoneRequest;
 import com.nhnacademy.testtest.entity.MileStone;
 import com.nhnacademy.testtest.entity.Project;
 import com.nhnacademy.testtest.exception.ProjectNullPointException;
@@ -21,37 +22,33 @@ public class MileStoneController {
     private final ProjectService projectService;
 
     @PostMapping
-    public ResponseEntity<MileStone> createMileStone(@RequestBody CreateMileStoneRequest request, @RequestParam Long projectId) {
-        Project project = projectService.getProjectById(projectId).orElse(null);
-        if(project == null) {
-            throw new ProjectNullPointException("project is null");
-        }
-        MileStone mileStone = mileStoneService.createMileStone(request, projectId);
-        return ResponseEntity.ok(mileStone);
+    public ResponseEntity<MileStone> createMileStone(@RequestBody CreateMileStoneRequest request) {
+
+        mileStoneService.createMileStone(request);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/{mileStoneId}")
-    public MileStone getMileStoneById(@PathVariable Long mileStoneId){
-
-        return mileStoneService.getMileStoneById(mileStoneId);
+    public ResponseEntity<MileStone> getMileStoneById(@PathVariable Long mileStoneId){
+        MileStone mileStone = mileStoneService.getMileStoneById(mileStoneId);
+        return ResponseEntity.ok(mileStone);
 
     }
 
     @GetMapping
-    public ResponseEntity<List<MileStoneDto>> getAllMileStones() {
-        List<MileStoneDto> allMileStones = mileStoneService.getAllMileStones();
-        return ResponseEntity.ok(allMileStones);
+    public List<MileStone> getAllMileStones() {
+        return mileStoneService.getAllMileStones();
     }
 
     @PutMapping
-    public ResponseEntity<MileStone> updateMileStone(@RequestBody CreateMileStoneRequest createMileStoneRequest, @RequestParam Long milestoneId) {
-        MileStone mileStone = mileStoneService.updateMileStone(createMileStoneRequest, milestoneId);
+    public ResponseEntity<MileStone> updateMileStone(@RequestBody ModifyMileStoneRequest modifyMileStoneRequest) {
+        MileStone mileStone = mileStoneService.updateMileStone(modifyMileStoneRequest);
         return ResponseEntity.ok(mileStone);
     }
 
-    @DeleteMapping
-    public ResponseEntity<MileStone> deleteMileStone(@RequestParam Long milestoneId) {
-        mileStoneService.deleteMileStone(milestoneId);
+    @DeleteMapping("/{mileStoneId}")
+    public ResponseEntity<MileStone> deleteMileStone(@PathVariable Long mileStoneId) {
+        mileStoneService.deleteMileStone(mileStoneId);
         return ResponseEntity.ok().build();
     }
 
