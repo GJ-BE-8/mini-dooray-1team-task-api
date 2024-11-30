@@ -16,7 +16,9 @@ public class Task {
 
     private String title;
 
-    private String tag;
+    @ManyToOne
+    private Tag tag;
+
 
     @ManyToOne
     private MileStone mileStone;

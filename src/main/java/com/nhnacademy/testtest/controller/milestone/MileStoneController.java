@@ -51,8 +51,8 @@ public class MileStoneController {
     }
 
     @DeleteMapping
-    public ResponseEntity<MileStone> deleteMileStone(@RequestParam Long projectId) {
-        mileStoneService.deleteMileStone(projectId);
+    public ResponseEntity<MileStone> deleteMileStone(@RequestParam Long milestoneId) {
+        mileStoneService.deleteMileStone(milestoneId);
         return ResponseEntity.ok().build();
     }
 

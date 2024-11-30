@@ -24,6 +24,9 @@ public class MileStoneServiceImpl implements MileStoneService {
     @Override
     public MileStone createMileStone(CreateMileStoneRequest request, Long projectId) {
         Project project = projectRepository.findById(projectId).orElse(null);
+        if (project == null) {
+            throw new ProjectNotFoundException("Project not found");
+        }
         MileStone mileStone = new MileStone(request.getName(),request.getStartTime(),request.getEndTime(), project);
         mileStoneRepository.save(mileStone);
         return mileStone;
