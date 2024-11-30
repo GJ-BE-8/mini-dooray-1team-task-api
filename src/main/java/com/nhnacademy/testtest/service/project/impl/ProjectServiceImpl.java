@@ -1,11 +1,12 @@
 package com.nhnacademy.testtest.service.project.impl;
 
-import com.nhnacademy.testtest.dto.project.CreateCommendProject;
+import com.nhnacademy.testtest.dto.project.CreateProjectRequest;
 import com.nhnacademy.testtest.entity.Project;
 import com.nhnacademy.testtest.exception.ProjectNullPointException;
 import com.nhnacademy.testtest.repository.ProjectRepository;
 import com.nhnacademy.testtest.service.project.ProjectService;
 import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ public class ProjectServiceImpl implements ProjectService {
 
 
     @Override
-    public Project createProject(CreateCommendProject createCommendProject) {
+    public Project createProject(CreateProjectRequest createCommendProject) {
 
         Project project = new Project(createCommendProject.getName(),
             createCommendProject.getStatus());
@@ -31,5 +32,10 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public List<Project> getAllByProjectMemberId(Long projectMemberId) {
         return projectRepository.findByProjectMemberId(projectMemberId);
+    }
+
+    @Override
+    public Optional<Project> getProjectById(Long projectId) {
+        return projectRepository.findById(projectId);
     }
 }

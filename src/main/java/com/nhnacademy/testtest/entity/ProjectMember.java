@@ -33,10 +33,11 @@ public class ProjectMember {
 
 
 
-    public ProjectMember(String name, String email, Role role) {
+    public ProjectMember(String name, String email, Role role, Project project) {
         this.name = name;
         this.email = email;
         this.role = role;
+        this.project = project;
     }
 
 }

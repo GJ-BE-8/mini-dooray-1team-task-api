@@ -1,6 +1,7 @@
 package com.nhnacademy.testtest.service.projectmember.impl;
 
-import com.nhnacademy.testtest.dto.proejctmember.CreateCommendProjectMember;
+import com.nhnacademy.testtest.dto.proejctmember.CreateProjectMemberRequest;
+import com.nhnacademy.testtest.entity.Project;
 import com.nhnacademy.testtest.entity.ProjectMember;
 import com.nhnacademy.testtest.entity.Role;
 import com.nhnacademy.testtest.exception.ProjectMemberNullPointException;
@@ -17,10 +18,10 @@ public class ProjectMemberServiceImpl implements ProjectMemberService {
 
 
     @Override
-    public ProjectMember createProjectMember(CreateCommendProjectMember createCommendProjectMember) {
+    public ProjectMember createProjectMember(CreateProjectMemberRequest createCommendProjectMember, Project project) {
         ProjectMember projectMember = new ProjectMember(createCommendProjectMember.getName(),
             createCommendProjectMember.getEmail(),
-            Role.valueOf(createCommendProjectMember.getRole()));
+            Role.valueOf(createCommendProjectMember.getRole()), project);
 
         ProjectMember save = projectMemberRepository.save(projectMember);
         if(save == null) {

@@ -1,7 +1,7 @@
 package com.nhnacademy.testtest.controller.project;
 
-import com.nhnacademy.testtest.dto.proejctmember.CreateCommendProjectMember;
-import com.nhnacademy.testtest.dto.project.CreateCommendProject;
+import com.nhnacademy.testtest.dto.proejctmember.CreateProjectMemberRequest;
+import com.nhnacademy.testtest.dto.project.CreateProjectRequest;
 import com.nhnacademy.testtest.entity.Project;
 import com.nhnacademy.testtest.service.project.ProjectService;
 import com.nhnacademy.testtest.service.projectmember.ProjectMemberService;
@@ -25,10 +25,10 @@ public class ProjectController {
 
 
     @PostMapping
-    public ResponseEntity<Project> createProject(@RequestBody CreateCommendProject createCommendProject, CreateCommendProjectMember createCommendProjectMember) {
+    public ResponseEntity<Project> createProject(@RequestBody CreateProjectRequest createCommendProject, CreateProjectMemberRequest createCommendProjectMember) {
 
         Project project = projectService.createProject(createCommendProject);
-        projectMemberService.createProjectMember(createCommendProjectMember);
+        projectMemberService.createProjectMember(createCommendProjectMember, project);
 
         return ResponseEntity.ok(project);
     }

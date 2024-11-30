@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CreateCommendProjectMember {
+public class CreateProjectMemberRequest {
 
     String id;
     String name;
