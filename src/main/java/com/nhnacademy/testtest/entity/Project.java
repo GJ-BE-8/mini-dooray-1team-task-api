@@ -16,10 +16,11 @@ public class Project {
     @Setter
     private String name;
 
+    @Enumerated(value = EnumType.STRING)
     @Setter
-    private String status;
+    private Status status;
 
-    public Project(String name, String status) {
+    public Project(String name, Status status) {
         this.name = name;
         this.status = status;
     }
