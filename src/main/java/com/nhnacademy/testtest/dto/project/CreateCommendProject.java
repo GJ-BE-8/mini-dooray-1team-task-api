@@ -1,4 +1,4 @@
-package com.nhnacademy.testtest.dto;
+package com.nhnacademy.testtest.dto.project;
 
 import lombok.Getter;
 import lombok.Setter;

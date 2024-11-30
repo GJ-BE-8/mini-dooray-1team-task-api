@@ -1,10 +1,11 @@
 package com.nhnacademy.testtest.service.project.impl;
 
-import com.nhnacademy.testtest.dto.CreateCommendProject;
+import com.nhnacademy.testtest.dto.project.CreateCommendProject;
 import com.nhnacademy.testtest.entity.Project;
 import com.nhnacademy.testtest.exception.ProjectNullPointException;
 import com.nhnacademy.testtest.repository.ProjectRepository;
 import com.nhnacademy.testtest.service.project.ProjectService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +26,10 @@ public class ProjectServiceImpl implements ProjectService {
         }
         return projectRepository.save(project);
 
+    }
+
+    @Override
+    public List<Project> getAllByProjectMemberId(Long projectMemberId) {
+        return projectRepository.findByProjectMemberId(projectMemberId);
     }
 }
