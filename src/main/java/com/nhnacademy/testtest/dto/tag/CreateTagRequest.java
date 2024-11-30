@@ -1,9 +1,11 @@
 package com.nhnacademy.testtest.dto.tag;
 
-import com.nhnacademy.testtest.entity.Project;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class CreateTagRequest {
 
     String name;

@@ -18,8 +18,6 @@ public class Task {
 
     private String tag;
 
-    private String status;
-
     @ManyToOne
     private MileStone mileStone;
 }

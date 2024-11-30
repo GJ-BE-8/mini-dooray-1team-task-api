@@ -3,8 +3,36 @@ GET https://examples.http-client.intellij.net/get
     ?generated-in=IntelliJ IDEA
 
 ###
-http://localhost:8080/api/project?memberId=1
+GET http://localhost:8080/api/project?memberId=1
 
 
 ###
-http://localhost:8080/api/milestone
+GET http://localhost:8080/api/milestone
+
+
+
+
+
+
+
+
+###태그생성
+
+POST http://localhost:8080/api/tag?projectId=1
+Content-Type: application/json
+
+{
+    "name": "New Tag"
+}
+
+###
+PUT http://localhost:8080/api/tag?projectId=1
+Content-Type: application/json
+
+{
+    "name": "ee Tag"
+}
+
+###
+DELETE localhost:8080/api/tag?tagId=13
+

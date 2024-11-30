@@ -23,24 +23,23 @@ public class TagController {
 
     @PostMapping
     public ResponseEntity<Tag> createTag(@RequestBody CreateTagRequest request, @RequestParam Long projectId) {
-        tagService.CreateTag(request, projectId);
+        tagService.createTag(request, projectId);
 
-        Tag tag = tagService.CreateTag(request, projectId);
+        Tag tag = tagService.createTag(request, projectId);
         return ResponseEntity.ok(tag);
     }
 
 
     @PutMapping
-    public ResponseEntity<Tag> updateTag(@RequestBody CreateTagRequest request, @RequestParam Long projectId) {
-        tagService.CreateTag(request, projectId);
+    public ResponseEntity<Tag> updateTag(@RequestBody CreateTagRequest request, @RequestParam Long tagId) {
 
-        Tag tag = tagService.CreateTag(request, projectId);
+        Tag tag = tagService.updateTag(request, tagId);
         return ResponseEntity.ok(tag);
     }
 
     @DeleteMapping
     public ResponseEntity<Tag> deleteTag(@RequestParam Long tagId) {
-        tagService.DeleteTag(tagId);
+        tagService.deleteTag(tagId);
         return ResponseEntity.ok().build();
     }
 }

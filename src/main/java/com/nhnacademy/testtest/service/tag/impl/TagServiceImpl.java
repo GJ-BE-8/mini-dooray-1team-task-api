@@ -4,6 +4,7 @@ import com.nhnacademy.testtest.dto.tag.CreateTagRequest;
 import com.nhnacademy.testtest.dto.tag.TagDto;
 import com.nhnacademy.testtest.entity.Project;
 import com.nhnacademy.testtest.entity.Tag;
+import com.nhnacademy.testtest.exception.TagNullPointException;
 import com.nhnacademy.testtest.repository.TagRepository;
 import com.nhnacademy.testtest.service.project.ProjectService;
 import com.nhnacademy.testtest.service.tag.TagService;
@@ -19,26 +20,29 @@ public class TagServiceImpl implements TagService {
     private final ProjectService projectService;
 
     @Override
-    public Tag CreateTag(CreateTagRequest request, Long projectId) {
+    public Tag createTag(CreateTagRequest request, Long projectId) {
         Project project = projectService.getProjectById(projectId).orElse(null);
         Tag tag = new Tag(request.getName(), project);
         return tagRepository.save(tag);
     }
 
     @Override
-    public Tag UpdateTag(CreateTagRequest request, Long projectId) {
-        Project project = projectService.getProjectById(projectId).orElse(null);
-        Tag tag = new Tag(request.getName(), project);
+    public Tag updateTag(CreateTagRequest request, Long tagId) {
+        Tag tag = tagRepository.findById(tagId).orElse(null);
+        if(tag == null) {
+            throw new TagNullPointException("tag id null");
+        }
+        tag.setName(request.getName());
         return tagRepository.save(tag);
     }
 
     @Override
-    public void DeleteTag(Long tagId) {
+    public void deleteTag(Long tagId) {
         tagRepository.deleteById(tagId);
     }
 
     @Override
-    public Optional<TagDto> GetTagById(Long tagId) {
+    public Optional<TagDto> getTagById(Long tagId) {
         return tagRepository.findTagDtoById(tagId);
     }
 }

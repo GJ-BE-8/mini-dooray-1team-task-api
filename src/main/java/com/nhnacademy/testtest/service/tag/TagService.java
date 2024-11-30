@@ -9,9 +9,9 @@ import java.util.Optional;
 public interface TagService {
 
 
-    Tag CreateTag(CreateTagRequest request, Long projectId);
-    Tag UpdateTag(CreateTagRequest request, Long projectId);
-    void DeleteTag(Long tagId);
+    Tag createTag(CreateTagRequest request, Long projectId);
+    Tag updateTag(CreateTagRequest request, Long tagId);
+    void deleteTag(Long tagId);
 
-    Optional<TagDto> GetTagById(Long tagId);
+    Optional<TagDto> getTagById(Long tagId);
 }

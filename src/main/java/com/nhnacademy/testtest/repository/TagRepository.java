@@ -11,5 +11,4 @@ public interface TagRepository extends JpaRepository<Tag, Long> {
     @Query("select new com.nhnacademy.testtest.dto.tag.TagDto(t.name) from Tag t")
     Optional<TagDto> findTagDtoById(long id);
 
-
 }

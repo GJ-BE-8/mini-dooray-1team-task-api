@@ -9,6 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.Setter;
 
 @Entity
 @NoArgsConstructor
@@ -19,14 +20,18 @@ public class ProjectMember {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Setter
     @Column(nullable = false)
     private String name;
 
+    @Setter
     @NonNull
     private String email;
 
+    @Setter
     private Role role;
 
+    @Setter
     @ManyToOne
     @JoinColumn(name = "project_id")
     private Project project;
