@@ -15,12 +15,26 @@ import org.springframework.stereotype.Service;
 public class MileStoneServiceImpl implements MileStoneService {
 
     private final MileStoneRepository mileStoneRepository;
+
     @Override
     public MileStone createMileStone(CreateMileStoneRequest request, Project project) {
         MileStone mileStone = new MileStone(request.getName(),request.getStartTime(),request.getEndTime(), project);
         mileStoneRepository.save(mileStone);
         return mileStone;
     }
+
+    @Override
+    public MileStone updateMileStone(CreateMileStoneRequest request, Project project) {
+        MileStone mileStone = new MileStone(request.getName(),request.getStartTime(),request.getEndTime(), project);
+        mileStoneRepository.save(mileStone);
+        return mileStone;
+    }
+
+    @Override
+    public void deleteMileStone(long id) {
+        mileStoneRepository.deleteById(id);
+    }
+
 
     @Override
     public List<MileStoneDto> getAllMileStones() {

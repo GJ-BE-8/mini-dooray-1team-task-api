@@ -34,6 +34,7 @@ public class ProjectController {
     @PostMapping
     public ResponseEntity<Project> createProject(@RequestBody CreateProjectRequest createCommendProject, CreateProjectMemberRequest createCommendProjectMember) {
 
+        //프로젝트 최초 생성할때 프로젝트 담당자를 저장하는 로직
         Project project = projectService.createProject(createCommendProject);
         projectMemberService.createProjectMember(createCommendProjectMember, project);
 

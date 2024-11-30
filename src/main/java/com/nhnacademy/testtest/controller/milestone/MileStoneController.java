@@ -4,6 +4,7 @@ import com.nhnacademy.testtest.dto.milestone.CreateMileStoneRequest;
 import com.nhnacademy.testtest.dto.milestone.MileStoneDto;
 import com.nhnacademy.testtest.entity.MileStone;
 import com.nhnacademy.testtest.entity.Project;
+import com.nhnacademy.testtest.exception.ProjectNullPointException;
 import com.nhnacademy.testtest.service.milestone.MileStoneService;
 import com.nhnacademy.testtest.service.project.ProjectService;
 import java.util.List;
@@ -28,6 +29,9 @@ public class MileStoneController {
     @PostMapping
     public ResponseEntity<MileStone> createMileStone(@RequestBody CreateMileStoneRequest request, @RequestParam Long projectId) {
         Project project = projectService.getProjectById(projectId).orElse(null);
+        if(project == null) {
+            throw new ProjectNullPointException("project is null");
+        }
         MileStone mileStone = mileStoneService.createMileStone(request, project);
         return ResponseEntity.ok(mileStone);
     }

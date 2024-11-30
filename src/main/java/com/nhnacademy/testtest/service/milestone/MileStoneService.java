@@ -10,5 +10,8 @@ public interface MileStoneService {
 
     MileStone createMileStone(CreateMileStoneRequest request, Project project);
 
+    MileStone updateMileStone(CreateMileStoneRequest request, Project project);
+
+    void deleteMileStone(long id);
     List<MileStoneDto> getAllMileStones();
 }
