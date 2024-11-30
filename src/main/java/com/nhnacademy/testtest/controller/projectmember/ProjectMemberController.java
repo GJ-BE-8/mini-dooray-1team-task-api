@@ -26,12 +26,11 @@ public class ProjectMemberController {
 
     @PostMapping
     public ResponseEntity<ProjectMember> createProjectMember(@RequestBody CreateProjectMemberRequest request, @RequestParam Long projectId) {
-        Optional<Project> projectById = projectService.getProjectById(projectId);
-        Project project = projectById.orElse(null);
+        Project project = projectService.getProjectById(projectId).orElse(null);
         if(project == null) {
             throw new ProjectNullPointException("project is null");
         }
-        ProjectMember projectMember = new ProjectMember(request.getName(),request.getEmail(), Role.valueOf(request.getRole()), project);
+        ProjectMember projectMember = projectMemberService.createProjectMember(request, project);
         return ResponseEntity.ok().body(projectMember);
     }
 }

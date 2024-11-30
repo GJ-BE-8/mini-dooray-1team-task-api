@@ -1,0 +1,78 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=IntelliJ IDEA
+
+###
+GET http://localhost:8080/api/project?memberId=1
+
+
+###
+GET http://localhost:8080/api/milestone
+
+
+
+
+
+
+
+
+###태그생성
+
+POST http://localhost:8080/api/tag?projectId=1
+Content-Type: application/json
+
+{
+    "name": "New Tag"
+}
+
+###
+PUT http://localhost:8080/api/tag?tagId=1
+Content-Type: application/json
+
+{
+    "name": "ee zzzzzz"
+}
+
+###
+DELETE localhost:8080/api/tag?tagId=1
+
+
+
+### 마엘스톤 CRUD
+
+
+POST localhost:8080/api/milestone?projectId=1
+Content-Type: application/json
+
+{
+    "name": "Design Phase",
+    "startTime": "2024-12-01T10:00:00",
+    "endTime": "2024-12-31T18:00:00"
+}
+
+
+###
+PUT localhost:8080/api/milestone?milestoneId=1
+Content-Type: application/json
+
+{
+    "name": "수정해쩌염 Phase",
+    "startTime": "2024-12-01T10:00:00",
+    "endTime": "2024-12-31T18:00:00"
+}
+
+###
+DELETE localhost:8080/api/milestone?milestoneId=1
+
+### list
+GET localhost:8080/api/milestone
+
+
+
+###프로젝트 맴버 저장
+
+
+
+
+
+
