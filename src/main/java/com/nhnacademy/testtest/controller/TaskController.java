@@ -26,7 +26,7 @@ public class TaskController {
         for(Task task : taskService.getAllTasks()){
 
             TaskDto taskDto = new TaskDto();
-            taskDto.createTaskDto(task.getId(),task.getTitle(), task.getTag(), task.getStatus(),task.getMileStone().getId());
+            taskDto.createTaskDto(task.getId(),task.getTitle(), task.getContent(),task.getMileStone().getId());
 
             result.add(taskDto);
         }
@@ -41,7 +41,7 @@ public class TaskController {
 
         Task task = taskService.getTask(taskId);
         TaskDto taskDto = new TaskDto();
-        taskDto.createTaskDto(task.getId(),task.getTitle(),task.getTag(),task.getStatus(),task.getMileStone().getId());
+        taskDto.createTaskDto(task.getId(),task.getTitle(),task.getContent(),task.getMileStone().getId());
 
         return taskDto;
     }

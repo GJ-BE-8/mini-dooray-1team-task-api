@@ -6,7 +6,6 @@ import com.nhnacademy.testtest.entity.MileStone;
 import com.nhnacademy.testtest.entity.Project;
 import com.nhnacademy.testtest.exception.MileStoneNullPointException;
 import com.nhnacademy.testtest.exception.ProjectNotFoundException;
-import com.nhnacademy.testtest.exception.ProjectNullPointException;
 import com.nhnacademy.testtest.repository.MileStoneRepository;
 import com.nhnacademy.testtest.repository.ProjectRepository;
 import com.nhnacademy.testtest.service.milestone.MileStoneService;
@@ -27,7 +26,7 @@ public class MileStoneServiceImpl implements MileStoneService {
         if (project == null) {
             throw new ProjectNotFoundException("Project not found");
         }
-        MileStone mileStone = new MileStone(request.getName(),request.getStartTime(),request.getEndTime(), project);
+        MileStone mileStone = new MileStone(request.getName(), project);
         mileStoneRepository.save(mileStone);
         return mileStone;
     }
@@ -39,7 +38,6 @@ public class MileStoneServiceImpl implements MileStoneService {
             throw new MileStoneNullPointException("MileStone is null");
         }
         mileStone.setName(request.getName());
-        mileStone.setEndTime(request.getEndTime());
 
         mileStoneRepository.save(mileStone);
         return mileStone;

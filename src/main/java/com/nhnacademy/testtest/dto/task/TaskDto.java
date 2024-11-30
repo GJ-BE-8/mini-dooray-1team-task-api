@@ -8,18 +8,17 @@ public class TaskDto {
 
     private String title;
 
-    private String tag;
+    private String content;
 
-    private String status;
+
 
     private Long mileStone;
 
-    public TaskDto createTaskDto(long id, String title,String tag,String status, Long mileStone){
+    public TaskDto createTaskDto(long id, String title,String content, Long mileStone){
 
         this.id = id;
         this.title = title;
-        this.tag =tag;
-        this.status = status;
+        this.content =content;
         this.mileStone = mileStone;
 
         return this;

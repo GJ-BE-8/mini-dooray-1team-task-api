@@ -8,7 +8,6 @@ import com.nhnacademy.testtest.repository.ProjectRepository;
 import com.nhnacademy.testtest.service.project.ProjectService;
 import com.nhnacademy.testtest.service.projectmember.ProjectMemberService;
 import java.util.List;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
