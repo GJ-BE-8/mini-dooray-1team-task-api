@@ -1,10 +1,9 @@
 package com.nhnacademy.testtest.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,10 +20,6 @@ public class MileStone {
 
     @Setter
     private String name;
-    @Setter
-    private LocalDateTime startTime;
-    @Setter
-    private LocalDateTime endTime;
 
     @ManyToOne
     @Setter

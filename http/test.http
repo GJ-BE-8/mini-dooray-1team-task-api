@@ -1,0 +1,30 @@
+### task 조회
+GET http://localhost:8080/task/6
+
+### task 전체 조회
+GET http://localhost:8080/task
+
+### task 등록
+POST http://localhost:8080/task
+Content-Type: Application/json
+
+{
+  "title": "테스트업무2",
+  "status": "TODO2",
+  "tag": "Frontend2",
+  "mileStoneId": 2
+}
+
+### task 수정
+PUT http://localhost:8080/task/6
+Content-Type: Application/json
+
+{
+  "title": "ㅠㅠ",
+  "status": "ㅋㅋ",
+  "tag": "ㅎㅎ",
+  "mileStoneId": 1
+}
+
+### task 삭제
+DELETE http://localhost:8080/task/6

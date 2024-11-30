@@ -5,10 +5,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
+import lombok.NoArgsConstructor
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Setter;
+import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor
@@ -19,16 +19,18 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-
+    @Setter
     private String content;
 
-    private LocalDateTime date;
+    @Setter
+    private LocalDateTime createdAt;
+
+    @ManyToOne
+    @Setter
+    private ProjectMember author;
 
     @ManyToOne
     private Task task;
-
-    @ManyToOne
-    private ProjectMember projectMember;
 
     public Comment(String content, LocalDateTime date, Task task, ProjectMember projectMember) {
         this.content = content;
