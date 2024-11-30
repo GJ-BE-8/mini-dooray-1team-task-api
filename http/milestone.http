@@ -1,0 +1,66 @@
+### mileStone 생성
+POST http://localhost:8080/api/milestone
+Content-Type: application/json
+
+{
+  "name": "테스트용마일스톤1",
+  "projectId": 1
+}
+
+### mileStone 생성 (존재 x projectId인경우)
+POST http://localhost:8080/api/milestone
+Content-Type: application/json
+
+{
+  "name": "테스트용마일스톤1",
+  "projectId": 999999
+}
+
+### mileStone 조회
+GET http://localhost:8080/api/milestone/1
+Content-Type: application/json
+
+
+### mileStone 조회 (존재 x milestoneId인경우)
+GET http://localhost:8080/api/milestone/999999
+Content-Type: application/json
+
+
+### mileStone 전체조회
+GET http://localhost:8080/api/milestone
+Content-Type: application/json
+
+
+### mileStone 수정
+PUT http://localhost:8080/api/milestone
+Content-Type: application/json
+
+{
+  "id": 11,
+  "name": "테스트용마일스톤22",
+  "projectId": 1
+}
+
+### mileStone 수정 (존재 x milestoneId인경우)
+PUT http://localhost:8080/api/milestone
+Content-Type: application/json
+
+{
+  "id": 999999,
+  "name": "테스트용마일스톤22",
+  "projectId": 1
+}
+
+### mileStone 수정 (존재 x projectId인경우)
+PUT http://localhost:8080/api/milestone
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "테스트용마일스톤22",
+  "projectId": 999999
+}
+
+### mileStone 삭제
+DELETE http://localhost:8080/api/milestone/11
+Content-Type: application/json
