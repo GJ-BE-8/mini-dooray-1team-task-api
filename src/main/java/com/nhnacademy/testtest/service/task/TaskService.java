@@ -26,7 +26,6 @@ public interface TaskService {
     TaskCommentDTO getTaskComment(Long taskId);
 
     List<Task> getTasksByProjectId(Long projectId);
-    void update(Task task);
 
     List<TaskDTO> getTaskByProjectMemberId(Long projectMemberId);
 }
