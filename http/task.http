@@ -150,3 +150,8 @@ Content-Type: Application/json
 
 ### task 삭제
 DELETE http://localhost:8080/task/6
+
+### task memberId로 조회
+
+GET localhost:8080/task?projectMemberId=1
+
