@@ -1,0 +1,5 @@
+### 멤버 아이디로 멤버 찾아오기
+GET http://localhost:8080/api/project-members/1
+
+### 프로젝트 아이디로 멤버 찾아오기
+GET http://localhost:8080/api/project-members?projectId=1
