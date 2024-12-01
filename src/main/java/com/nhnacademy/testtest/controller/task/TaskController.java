@@ -31,7 +31,7 @@ public class TaskController {
         return taskService.getTask(taskId);
     }
 
-    @GetMapping(path = "{projectMemberId}")
+    @GetMapping(params = "{projectMemberId}")
     public List<TaskDTO> getTaskByProjectMemberId(@RequestParam Long projectMemberId){
         return taskService.getTaskByProjectMemberId(projectMemberId);
     }
