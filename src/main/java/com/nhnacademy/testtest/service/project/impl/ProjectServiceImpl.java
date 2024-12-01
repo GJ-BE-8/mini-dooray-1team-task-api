@@ -1,9 +1,7 @@
 package com.nhnacademy.testtest.service.project.impl;
 
-
 import com.nhnacademy.testtest.entity.Project;
 import com.nhnacademy.testtest.entity.ProjectMember;
-import com.nhnacademy.testtest.entity.Role;
 import com.nhnacademy.testtest.exception.ProjectMemberNullPointException;
 import com.nhnacademy.testtest.exception.ProjectNullPointException;
 import com.nhnacademy.testtest.repository.ProjectMemberRepository;
@@ -12,12 +10,19 @@ import com.nhnacademy.testtest.service.project.ProjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ProjectServiceImpl implements ProjectService {
 
     private final ProjectRepository projectRepository;
     private final ProjectMemberRepository projectMemberRepository;
+
+    @Override
+    public List<Project> getAllProjects(){
+        return projectRepository.findAll();
+    }
 
 
     @Override
