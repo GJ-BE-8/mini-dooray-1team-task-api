@@ -1,12 +1,15 @@
 package com.nhnacademy.testtest.service.task.impl;
 
 
+import com.nhnacademy.testtest.dto.comment.CommentDto;
+import com.nhnacademy.testtest.dto.task.TaskCommentDTO;
 import com.nhnacademy.testtest.dto.task.TaskDTO;
 import com.nhnacademy.testtest.dto.task.TaskModifyRequest;
 import com.nhnacademy.testtest.dto.task.TaskPostRequest;
 import com.nhnacademy.testtest.entity.*;
 import com.nhnacademy.testtest.exception.DuplicatedMileStoneException;
 import com.nhnacademy.testtest.exception.TaskNotFoundException;
+import com.nhnacademy.testtest.repository.CommentRepository;
 import com.nhnacademy.testtest.repository.TaskRepository;
 import com.nhnacademy.testtest.service.milestone.MileStoneService;
 import com.nhnacademy.testtest.service.project.ProjectService;
@@ -32,6 +35,7 @@ public class TaskServiceImpl implements TaskService {
     private final ProjectService projectService;
     private final ProjectMemberService projectMemberService;
     private final TagService tagService;
+    private final CommentRepository commentRepository;
 
 
     @Override
@@ -104,20 +108,27 @@ public class TaskServiceImpl implements TaskService {
         taskRepository.deleteById(taskId);
     }
 
-    @Override
-    public List<Task> getTaskByMilestoneId(Long milestoneId) {
-        return taskRepository.findByMileStoneId(milestoneId);
-    }
-
-    @Override
-    public List<Task> getTaskByTagId(Long tagId) {
-        return taskRepository.findByTagId(tagId);
-    }
 
     //마엘스톤과 태그를 널로 업데이트하기위한 메서드
     @Override
     public void update(Task task) {
         taskRepository.save(task);
+    }
+
+    @Override
+    public TaskCommentDTO getTaskComment(Long taskId) {
+        TaskCommentDTO taskDTO = taskRepository.findByTaskId(taskId);
+        List<CommentDto> comments = commentRepository.findByTaskId(taskId);
+        taskDTO.setComments(comments);
+
+        return taskDTO;
+    }
+
+    @Override
+    public List<Task> getTasksByProjectId(Long projectId){
+
+        return taskRepository.findTasksByProject_Id(projectId);
+
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.nhnacademy.testtest.service.comment.impl;
 
+import com.nhnacademy.testtest.dto.comment.CommentDto;
 import com.nhnacademy.testtest.dto.comment.CommentModifyRequest;
 import com.nhnacademy.testtest.dto.comment.CommentPostRequest;
 import com.nhnacademy.testtest.entity.Comment;
@@ -53,7 +54,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<Comment> getAllByTaskId(Long taskId) {
+    public List<CommentDto> getAllByTaskId(Long taskId) {
         return commentRepository.findByTaskId(taskId);
     }
 }

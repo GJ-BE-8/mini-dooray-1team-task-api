@@ -1,5 +1,6 @@
 package com.nhnacademy.testtest.service.task;
 
+import com.nhnacademy.testtest.dto.task.TaskCommentDTO;
 import com.nhnacademy.testtest.dto.task.TaskDTO;
 import com.nhnacademy.testtest.dto.task.TaskModifyRequest;
 import com.nhnacademy.testtest.dto.task.TaskPostRequest;
@@ -20,10 +21,11 @@ public interface TaskService {
 
     void deleteTask(Long taskId);
 
-    List<Task> getTaskByMilestoneId(Long milestoneId);
+    void update(Task task);
 
-    List<Task> getTaskByTagId(Long tagId);
+    TaskCommentDTO getTaskComment(Long taskId);
 
+    List<Task> getTasksByProjectId(Long projectId);
     void update(Task task);
 
     List<TaskDTO> getTaskByProjectMemberId(Long projectMemberId);
