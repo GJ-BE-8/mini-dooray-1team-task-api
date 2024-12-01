@@ -4,7 +4,6 @@ import com.nhnacademy.testtest.dto.milestone.MileStonePostRequest;
 import com.nhnacademy.testtest.dto.milestone.MileStoneModifyRequest;
 import com.nhnacademy.testtest.entity.MileStone;
 import com.nhnacademy.testtest.service.milestone.MileStoneService;
-import com.nhnacademy.testtest.service.project.ProjectService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 public class MileStoneController {
 
     private final MileStoneService mileStoneService;
-    private final ProjectService projectService;
 
     @PostMapping
     public ResponseEntity<MileStone> createMileStone(@RequestBody MileStonePostRequest request) {

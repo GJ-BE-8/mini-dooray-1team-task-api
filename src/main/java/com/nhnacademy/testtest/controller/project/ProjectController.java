@@ -1,6 +1,7 @@
 package com.nhnacademy.testtest.controller.project;
 
 import com.nhnacademy.testtest.dto.proejctmember.PostProjectMemberRequest;
+import com.nhnacademy.testtest.dto.proejctmember.ProjectMemberDTO;
 import com.nhnacademy.testtest.dto.project.ProjectPostRequest;
 import com.nhnacademy.testtest.dto.project.ProjectWithMemberDTO;
 import com.nhnacademy.testtest.entity.Project;
@@ -23,22 +24,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProjectController {
 
     private final ProjectService projectService;
-    private final ProjectMemberService projectMemberService;
 
-    private final ProjectRepository projectRepository;
 
 
     @PostMapping
-    public ResponseEntity<ProjectWithMemberDTO> createProject(@RequestBody ProjectPostRequest createCommendProject, PostProjectMemberRequest createCommendProjectMember) {
+    public ResponseEntity<ProjectWithMemberDTO> createProject(@RequestBody ProjectPostRequest createCommendProject) {
 
         //프로젝트 최초 생성할때 프로젝트 담당자를 저장하는 로직
-        Project project = projectService.createProject(createCommendProject);
-        ProjectMember projectMember = projectMemberService.createProjectMember(
-            createCommendProjectMember);
+        Project project = createCommendProject.getProject();
+        projectService.createProject(project, createCommendProject.getProjectMember());
 
         //DTO로 프로젝트와 함께 생성된 등록자를 함꼐 반환
-        ProjectWithMemberDTO projectWithMemberDTO = new ProjectWithMemberDTO(project,
-            projectMember);
+        ProjectMember projectMember = createCommendProject.getProjectMember();
+        ProjectWithMemberDTO projectWithMemberDTO = new ProjectWithMemberDTO(project, new ProjectMemberDTO(projectMember.getName(),projectMember.getEmail(), projectMember.getRole().name()));
         return ResponseEntity.ok(projectWithMemberDTO);
     }
 

@@ -6,10 +6,17 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PostProjectMemberRequest {
+public class ProjectMemberDTO {
 
     String name;
     String email;
     String role;
-    Project project;
+
+
+    public ProjectMemberDTO(String name, String email, String role) {
+        this.name = name;
+        this.email = email;
+        this.role = role;
+
+    }
 }

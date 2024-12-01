@@ -1,11 +1,10 @@
 package com.nhnacademy.testtest.service.projectmember.impl;
 
 import com.nhnacademy.testtest.dto.proejctmember.PostProjectMemberRequest;
-import com.nhnacademy.testtest.entity.Project;
 import com.nhnacademy.testtest.entity.ProjectMember;
 import com.nhnacademy.testtest.entity.Role;
 import com.nhnacademy.testtest.exception.ProjectMemberNullPointException;
-import com.nhnacademy.testtest.exception.ProjectNotFoundException;
+
 import com.nhnacademy.testtest.repository.ProjectMemberRepository;
 import com.nhnacademy.testtest.repository.ProjectRepository;
 import com.nhnacademy.testtest.service.projectmember.ProjectMemberService;
@@ -17,21 +16,14 @@ import org.springframework.stereotype.Service;
 public class ProjectMemberServiceImpl implements ProjectMemberService {
 
     private final ProjectMemberRepository projectMemberRepository;
-    private final ProjectRepository projectRepository;
 
 
     @Override
     public ProjectMember createProjectMember(PostProjectMemberRequest createCommendProjectMember) {
-        Project project = projectRepository.findById(
-            createCommendProjectMember.getProjectId()).orElse(null);
-
-        if(project == null) {
-            throw new ProjectNotFoundException("Project not found");
-        }
 
         ProjectMember projectMember = new ProjectMember(createCommendProjectMember.getName(),
             createCommendProjectMember.getEmail(),
-            Role.valueOf(createCommendProjectMember.getRole()), project);
+            Role.valueOf(createCommendProjectMember.getRole()), createCommendProjectMember.getProject());
 
         return projectMemberRepository.save(projectMember);
     }

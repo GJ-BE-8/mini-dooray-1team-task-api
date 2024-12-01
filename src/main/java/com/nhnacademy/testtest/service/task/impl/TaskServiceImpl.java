@@ -103,4 +103,20 @@ public class TaskServiceImpl implements TaskService {
         taskRepository.deleteById(taskId);
     }
 
+    @Override
+    public List<Task> getTaskByMilestoneId(Long milestoneId) {
+        return taskRepository.findByMileStoneId(milestoneId);
+    }
+
+    @Override
+    public List<Task> getTaskByTagId(Long tagId) {
+        return taskRepository.findByTagId(tagId);
+    }
+
+    //마엘스톤과 태그를 널로 업데이트하기위한 메서드
+    @Override
+    public void update(Task task) {
+        taskRepository.save(task);
+    }
+
 }

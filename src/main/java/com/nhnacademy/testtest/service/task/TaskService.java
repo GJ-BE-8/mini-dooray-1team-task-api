@@ -18,4 +18,10 @@ public interface TaskService {
     Task modifyTask(TaskModifyRequest taskModifyRequest);
 
     void deleteTask(Long taskId);
+
+    List<Task> getTaskByMilestoneId(Long milestoneId);
+
+    List<Task> getTaskByTagId(Long tagId);
+
+    void update(Task task);
 }

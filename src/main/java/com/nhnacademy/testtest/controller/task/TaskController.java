@@ -1,4 +1,4 @@
-package com.nhnacademy.testtest.controller;
+package com.nhnacademy.testtest.controller.task;
 
 import com.nhnacademy.testtest.dto.task.TaskModifyRequest;
 import com.nhnacademy.testtest.dto.task.TaskPostRequest;

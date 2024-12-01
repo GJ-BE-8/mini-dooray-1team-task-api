@@ -1,5 +1,6 @@
 package com.nhnacademy.testtest.dto.project;
 
+import com.nhnacademy.testtest.dto.proejctmember.ProjectMemberDTO;
 import com.nhnacademy.testtest.entity.Project;
 import com.nhnacademy.testtest.entity.ProjectMember;
 import lombok.AllArgsConstructor;
@@ -11,5 +12,5 @@ import lombok.Setter;
 @Setter
 public class ProjectWithMemberDTO {
     private Project project;
-    private ProjectMember projectMember;
+    private ProjectMemberDTO projectMember;
 }

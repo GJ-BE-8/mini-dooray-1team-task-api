@@ -12,10 +12,10 @@ public class CommentModifyRequest {
 
     String content;
 
-    Long authorId;
-
-    LocalDateTime date;
-
-    Long taskId;
+//    Long authorId;
+//
+//    LocalDateTime date;
+//
+//    Long taskId;
 
 }

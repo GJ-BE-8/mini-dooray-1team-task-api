@@ -4,9 +4,12 @@ import com.nhnacademy.testtest.dto.milestone.MileStonePostRequest;
 import com.nhnacademy.testtest.dto.milestone.MileStoneModifyRequest;
 import com.nhnacademy.testtest.entity.MileStone;
 import com.nhnacademy.testtest.entity.Project;
+import com.nhnacademy.testtest.entity.Task;
 import com.nhnacademy.testtest.exception.MileStoneNullPointException;
 import com.nhnacademy.testtest.repository.MileStoneRepository;
+import com.nhnacademy.testtest.repository.TaskRepository;
 import com.nhnacademy.testtest.service.milestone.MileStoneService;
+import com.nhnacademy.testtest.service.task.TaskService;
 import java.util.List;
 
 import com.nhnacademy.testtest.service.project.ProjectService;
@@ -18,7 +21,7 @@ import org.springframework.stereotype.Service;
 public class MileStoneServiceImpl implements MileStoneService {
 
     private final MileStoneRepository mileStoneRepository;
-//    private final ProjectRepository projectRepository;
+    private final TaskRepository taskRepository;
     private final ProjectService projectService;
 
     @Override
@@ -46,6 +49,12 @@ public class MileStoneServiceImpl implements MileStoneService {
 
     @Override
     public void deleteMileStone(long id) {
+        //마엘스톤이 삭제될때 마엘스톤을 가지고 있는 테스크들의 마엘스톤fk를 null로 만들어야함
+        List<Task> taskByMilestoneId = taskRepository.findByMileStoneId(id);
+        for (Task task : taskByMilestoneId) {
+            task.setMileStone(null);
+            taskRepository.save(task);
+        }
         mileStoneRepository.deleteById(id);
     }
 
