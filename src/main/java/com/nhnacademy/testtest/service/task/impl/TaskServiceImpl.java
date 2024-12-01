@@ -1,8 +1,8 @@
 package com.nhnacademy.testtest.service.task.impl;
 
 
-import com.nhnacademy.testtest.dto.comment.CommentDto;
-import com.nhnacademy.testtest.dto.task.TaskCommentDTO;
+import com.nhnacademy.testtest.dto.task.TaskDTO;
+
 import com.nhnacademy.testtest.dto.task.TaskModifyRequest;
 import com.nhnacademy.testtest.dto.task.TaskPostRequest;
 import com.nhnacademy.testtest.entity.*;
@@ -115,12 +115,9 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public TaskCommentDTO getTaskComment(Long taskId) {
-        TaskCommentDTO taskDTO = taskRepository.findByTaskId(taskId);
-        List<CommentDto> comments = commentRepository.findByTaskId(taskId);
-        taskDTO.setComments(comments);
+    public List<TaskDTO> getTaskByProjectMemberId(Long projectMemberId) {
+        return taskRepository.findTaskByProjectMemberId(projectMemberId);
 
-        return taskDTO;
     }
 
 }
