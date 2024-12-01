@@ -1,5 +1,6 @@
 package com.nhnacademy.testtest.controller.comment;
 
+import com.nhnacademy.testtest.dto.comment.CommentDto;
 import com.nhnacademy.testtest.dto.comment.CommentModifyRequest;
 import com.nhnacademy.testtest.dto.comment.CommentPostRequest;
 import com.nhnacademy.testtest.entity.Comment;
@@ -49,8 +50,8 @@ public class CommentController {
 
     //task에 해당하는 comments
     @GetMapping
-    public ResponseEntity<List<Comment>> getCommentsByTaskId(@RequestParam Long taskId) {
-        List<Comment> allByTaskId = commentService.getAllByTaskId(taskId);
+    public ResponseEntity<List<CommentDto>> getCommentsByTaskId(@RequestParam Long taskId) {
+        List<CommentDto> allByTaskId = commentService.getAllByTaskId(taskId);
         return ResponseEntity.ok(allByTaskId);
     }
 }

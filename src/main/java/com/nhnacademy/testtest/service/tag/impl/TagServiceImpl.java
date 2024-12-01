@@ -10,7 +10,6 @@ import com.nhnacademy.testtest.repository.TagRepository;
 import com.nhnacademy.testtest.repository.TaskRepository;
 import com.nhnacademy.testtest.service.project.ProjectService;
 import com.nhnacademy.testtest.service.tag.TagService;
-import com.nhnacademy.testtest.service.task.TaskService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

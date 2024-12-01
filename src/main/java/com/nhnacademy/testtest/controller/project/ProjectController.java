@@ -25,8 +25,7 @@ public class ProjectController {
 
     private final ProjectService projectService;
 
-
-
+    
     @PostMapping
     public ResponseEntity<ProjectWithMemberDTO> createProject(@RequestBody ProjectPostRequest createCommendProject) {
 
