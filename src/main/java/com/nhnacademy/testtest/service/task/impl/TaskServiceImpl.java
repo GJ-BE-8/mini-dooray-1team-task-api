@@ -39,7 +39,7 @@ public class TaskServiceImpl implements TaskService {
 
 
     @Override
-    public List<Task> getAllTasks(){
+    public List<Task> getAllTasks() {
 
         return taskRepository.findAll();
 
@@ -47,14 +47,14 @@ public class TaskServiceImpl implements TaskService {
 
 
     @Override
-    public Task getTask(Long taskId){
+    public Task getTask(Long taskId) {
 
-        return taskRepository.getTaskById(taskId).orElseThrow(()->new TaskNotFoundException("해당 ID의 Task 존재하지 않습니다"));
+        return taskRepository.getTaskById(taskId).orElseThrow(() -> new TaskNotFoundException("해당 ID의 Task 존재하지 않습니다"));
 
     }
 
     @Override
-    public Task postTask(TaskPostRequest taskPostRequest){
+    public Task postTask(TaskPostRequest taskPostRequest) {
 
         Task task = new Task();
         task.setTitle(taskPostRequest.getTitle());
@@ -69,8 +69,8 @@ public class TaskServiceImpl implements TaskService {
         // 이미 같은 마일스톤 쓰고잇는 업무 잇다면 예외 발생 예외발생
 
         Task alreadyAssignedMileStone = taskRepository.findTaskByMileStone(mileStone).orElse(null);
-        if(Objects.nonNull(alreadyAssignedMileStone)){
-          throw new DuplicatedMileStoneException("해당 마일스톤은 이미 다른 업무에 배정되어 있습니다");
+        if (Objects.nonNull(alreadyAssignedMileStone)) {
+            throw new DuplicatedMileStoneException("해당 마일스톤은 이미 다른 업무에 배정되어 있습니다");
         }
 
         task.setProject(project);
@@ -80,11 +80,11 @@ public class TaskServiceImpl implements TaskService {
 // 임시코드
         return taskRepository.save(task);
     }
-    
+
     @Override
-    public Task modifyTask(TaskModifyRequest taskModifyRequest){
-        
-        Task task = taskRepository.findById(taskModifyRequest.getId()).orElseThrow(()->new TaskNotFoundException("해당 ID의 Task 존재하지 않습니다"));
+    public Task modifyTask(TaskModifyRequest taskModifyRequest) {
+
+        Task task = taskRepository.findById(taskModifyRequest.getId()).orElseThrow(() -> new TaskNotFoundException("해당 ID의 Task 존재하지 않습니다"));
         task.setTitle(taskModifyRequest.getTitle());
         task.setContent(taskModifyRequest.getContent());
 
@@ -94,7 +94,7 @@ public class TaskServiceImpl implements TaskService {
         // 이미 같은 마일스톤 쓰고잇는 업무 잇다면 예외 발생
 
         Task alreadyAssignedMileStone = taskRepository.findTaskByMileStone(mileStone).orElse(null);
-        if(Objects.nonNull(alreadyAssignedMileStone)){
+        if (Objects.nonNull(alreadyAssignedMileStone)) {
             throw new DuplicatedMileStoneException("해당 마일스톤은 이미 다른 업무에 배정되어 있습니다");
         }
         task.setMileStone(mileStone);
@@ -104,7 +104,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void deleteTask(Long taskId){
+    public void deleteTask(Long taskId) {
         taskRepository.deleteById(taskId);
     }
 
@@ -125,7 +125,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Task> getTasksByProjectId(Long projectId){
+    public List<Task> getTasksByProjectId(Long projectId) {
 
         return taskRepository.findTasksByProject_Id(projectId);
 
