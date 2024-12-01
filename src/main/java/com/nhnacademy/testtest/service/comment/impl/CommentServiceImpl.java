@@ -1,9 +1,8 @@
 package com.nhnacademy.testtest.service.comment.impl;
 
-import com.nhnacademy.testtest.dto.comment.CreateCommentRequest;
+import com.nhnacademy.testtest.dto.comment.CommentPostRequest;
 import com.nhnacademy.testtest.entity.Comment;
 import com.nhnacademy.testtest.repository.CommentRepository;
-import com.nhnacademy.testtest.repository.TagRepository;
 import com.nhnacademy.testtest.service.comment.CommentService;
 import com.nhnacademy.testtest.service.projectmember.ProjectMemberService;
 import com.nhnacademy.testtest.service.task.TaskService;
@@ -20,12 +19,12 @@ public class CommentServiceImpl implements CommentService {
 
 
     @Override
-    public Comment createCommend(CreateCommentRequest request) {
+    public Comment createCommend(CommentPostRequest request) {
         return null;
     }
 
     @Override
-    public Comment updateCommend(CreateCommentRequest request) {
+    public Comment updateCommend(CommentPostRequest request) {
         return null;
     }
 

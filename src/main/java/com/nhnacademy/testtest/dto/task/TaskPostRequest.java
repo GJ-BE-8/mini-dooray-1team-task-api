@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class TaskPostRequest {
 
-    private Long id;
+    //id 삭제(auto-increased)
     private String title;
     private String content;
     private Long projectId;

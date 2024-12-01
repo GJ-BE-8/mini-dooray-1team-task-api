@@ -6,9 +6,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CreateProjectRequest {
-
+public class ProjectPostRequest {
 
     String name;
     Status status;
+
 }

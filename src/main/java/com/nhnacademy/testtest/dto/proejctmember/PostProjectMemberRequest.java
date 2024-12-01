@@ -5,10 +5,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CreateProjectMemberRequest {
+public class PostProjectMemberRequest {
 
-    String id;
+    Long id;
     String name;
     String email;
     String role;
+    Long projectId;
 }

@@ -1,11 +1,8 @@
 package com.nhnacademy.testtest.controller.milestone;
 
-import com.nhnacademy.testtest.dto.milestone.CreateMileStoneRequest;
-import com.nhnacademy.testtest.dto.milestone.MileStoneDto;
-import com.nhnacademy.testtest.dto.milestone.ModifyMileStoneRequest;
+import com.nhnacademy.testtest.dto.milestone.MileStonePostRequest;
+import com.nhnacademy.testtest.dto.milestone.MileStoneModifyRequest;
 import com.nhnacademy.testtest.entity.MileStone;
-import com.nhnacademy.testtest.entity.Project;
-import com.nhnacademy.testtest.exception.ProjectNullPointException;
 import com.nhnacademy.testtest.service.milestone.MileStoneService;
 import com.nhnacademy.testtest.service.project.ProjectService;
 import java.util.List;
@@ -22,8 +19,7 @@ public class MileStoneController {
     private final ProjectService projectService;
 
     @PostMapping
-    public ResponseEntity<MileStone> createMileStone(@RequestBody CreateMileStoneRequest request) {
-
+    public ResponseEntity<MileStone> createMileStone(@RequestBody MileStonePostRequest request) {
         mileStoneService.createMileStone(request);
         return ResponseEntity.ok().build();
     }
@@ -41,7 +37,7 @@ public class MileStoneController {
     }
 
     @PutMapping
-    public ResponseEntity<MileStone> updateMileStone(@RequestBody ModifyMileStoneRequest modifyMileStoneRequest) {
+    public ResponseEntity<MileStone> updateMileStone(@RequestBody MileStoneModifyRequest modifyMileStoneRequest) {
         MileStone mileStone = mileStoneService.updateMileStone(modifyMileStoneRequest);
         return ResponseEntity.ok(mileStone);
     }

@@ -3,7 +3,7 @@ package com.nhnacademy.testtest.dto.milestone;
 import lombok.Data;
 
 @Data
-public class ModifyMileStoneRequest {
+public class MileStoneModifyRequest {
 
     Long id;
 

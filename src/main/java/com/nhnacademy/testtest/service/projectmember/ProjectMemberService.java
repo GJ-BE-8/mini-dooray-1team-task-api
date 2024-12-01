@@ -1,14 +1,13 @@
 package com.nhnacademy.testtest.service.projectmember;
 
-import com.nhnacademy.testtest.dto.proejctmember.CreateProjectMemberRequest;
-import com.nhnacademy.testtest.entity.Project;
+import com.nhnacademy.testtest.dto.proejctmember.PostProjectMemberRequest;
 import com.nhnacademy.testtest.entity.ProjectMember;
 
 public interface ProjectMemberService {
 
 
 
-    ProjectMember createProjectMember(CreateProjectMemberRequest createCommendProjectMember, Project project);
+    ProjectMember createProjectMember(PostProjectMemberRequest createCommendProjectMember);
 
     ProjectMember getProjectMemberById(Long id);
 }

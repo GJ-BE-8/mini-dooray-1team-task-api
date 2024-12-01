@@ -1,7 +1,7 @@
 package com.nhnacademy.testtest.service.tag.impl;
 
-import com.nhnacademy.testtest.dto.tag.CreateTagRequest;
-import com.nhnacademy.testtest.dto.tag.ModifyTagRequest;
+import com.nhnacademy.testtest.dto.tag.TagPostRequest;
+import com.nhnacademy.testtest.dto.tag.TagModifyRequest;
 import com.nhnacademy.testtest.entity.Project;
 import com.nhnacademy.testtest.entity.Tag;
 import com.nhnacademy.testtest.exception.TagNullPointException;
@@ -19,14 +19,14 @@ public class TagServiceImpl implements TagService {
     private final ProjectService projectService;
 
     @Override
-    public Tag createTag(CreateTagRequest request) {
+    public Tag createTag(TagPostRequest request) {
         Project project = projectService.getProjectById(request.getProjectId());
         Tag tag = new Tag(request.getName(), project);
         return tagRepository.save(tag);
     }
 
     @Override
-    public Tag updateTag(ModifyTagRequest request) {
+    public Tag updateTag(TagModifyRequest request) {
         Tag tag = tagRepository.findById(request.getId()).orElseThrow(
                 () -> new TagNullPointException("해당하는 아이디의 태그가 존재하지 않습니다")
         );
@@ -37,6 +37,10 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public void deleteTag(Long tagId) {
+        Tag tag = tagRepository.findById(tagId).orElse(null);
+        if (tag == null) {
+            throw new TagNullPointException("해당하는 아이디의 태그가 존재하지 않습니다.");
+        }
         tagRepository.deleteById(tagId);
     }
 

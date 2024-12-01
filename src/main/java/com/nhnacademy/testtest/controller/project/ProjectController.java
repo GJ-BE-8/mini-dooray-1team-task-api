@@ -1,21 +1,19 @@
 package com.nhnacademy.testtest.controller.project;
 
-import com.nhnacademy.testtest.dto.proejctmember.CreateProjectMemberRequest;
-import com.nhnacademy.testtest.dto.project.CreateProjectRequest;
-import com.nhnacademy.testtest.dto.project.ProjectDto;
+import com.nhnacademy.testtest.dto.proejctmember.PostProjectMemberRequest;
+import com.nhnacademy.testtest.dto.project.ProjectPostRequest;
+import com.nhnacademy.testtest.dto.project.ProjectWithMemberDTO;
 import com.nhnacademy.testtest.entity.Project;
+import com.nhnacademy.testtest.entity.ProjectMember;
 import com.nhnacademy.testtest.repository.ProjectRepository;
 import com.nhnacademy.testtest.service.project.ProjectService;
 import com.nhnacademy.testtest.service.projectmember.ProjectMemberService;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
@@ -31,13 +29,17 @@ public class ProjectController {
 
 
     @PostMapping
-    public ResponseEntity<Project> createProject(@RequestBody CreateProjectRequest createCommendProject, CreateProjectMemberRequest createCommendProjectMember) {
+    public ResponseEntity<ProjectWithMemberDTO> createProject(@RequestBody ProjectPostRequest createCommendProject, PostProjectMemberRequest createCommendProjectMember) {
 
         //프로젝트 최초 생성할때 프로젝트 담당자를 저장하는 로직
         Project project = projectService.createProject(createCommendProject);
-        projectMemberService.createProjectMember(createCommendProjectMember, project);
+        ProjectMember projectMember = projectMemberService.createProjectMember(
+            createCommendProjectMember);
 
-        return ResponseEntity.ok(project);
+        //DTO로 프로젝트와 함께 생성된 등록자를 함꼐 반환
+        ProjectWithMemberDTO projectWithMemberDTO = new ProjectWithMemberDTO(project,
+            projectMember);
+        return ResponseEntity.ok(projectWithMemberDTO);
     }
 
 
