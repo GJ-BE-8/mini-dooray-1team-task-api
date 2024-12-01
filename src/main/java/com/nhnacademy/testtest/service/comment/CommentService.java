@@ -1,5 +1,6 @@
 package com.nhnacademy.testtest.service.comment;
 
+import com.nhnacademy.testtest.dto.comment.CommentDto;
 import com.nhnacademy.testtest.dto.comment.CommentModifyRequest;
 import com.nhnacademy.testtest.dto.comment.CommentPostRequest;
 import com.nhnacademy.testtest.entity.Comment;
@@ -13,5 +14,5 @@ public interface CommentService {
 
     void deleteCommend(Long id);
 
-    List<Comment> getAllByTaskId(Long taskId);
+    List<CommentDto> getAllByTaskId(Long taskId);
 }

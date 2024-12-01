@@ -1,6 +1,7 @@
 package com.nhnacademy.testtest.controller.task;
 
 import com.nhnacademy.testtest.dto.task.TaskDTO;
+
 import com.nhnacademy.testtest.dto.task.TaskModifyRequest;
 import com.nhnacademy.testtest.dto.task.TaskPostRequest;
 import com.nhnacademy.testtest.entity.Task;
@@ -27,8 +28,8 @@ public class TaskController {
     // TASK 갖고오기
     // 업무번호로 TASK 가져오기
     @GetMapping("/{taskId}")
-    public Task getTask(@PathVariable Long taskId){
-        return taskService.getTask(taskId);
+    public TaskCommentDTO getTask(@PathVariable Long taskId){
+        return taskService.getTaskComment(taskId);
     }
 
     @GetMapping(path = "{projectMemberId}")
