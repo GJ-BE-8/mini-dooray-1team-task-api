@@ -1,6 +1,7 @@
 package com.nhnacademy.testtest.service.task.impl;
 
 
+import com.nhnacademy.testtest.dto.task.TaskDTO;
 import com.nhnacademy.testtest.dto.task.TaskModifyRequest;
 import com.nhnacademy.testtest.dto.task.TaskPostRequest;
 import com.nhnacademy.testtest.entity.*;
@@ -117,6 +118,11 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void update(Task task) {
         taskRepository.save(task);
+    }
+
+    @Override
+    public List<TaskDTO> getTaskByProjectMemberId(Long projectMemberId) {
+        return taskRepository.findTaskByProjectMemberId(projectMemberId);
     }
 
 }
