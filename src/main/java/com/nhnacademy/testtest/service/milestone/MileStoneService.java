@@ -1,19 +1,18 @@
 package com.nhnacademy.testtest.service.milestone;
 
-import com.nhnacademy.testtest.dto.milestone.CreateMileStoneRequest;
-import com.nhnacademy.testtest.dto.milestone.MileStoneDto;
+import com.nhnacademy.testtest.dto.milestone.MileStonePostRequest;
+import com.nhnacademy.testtest.dto.milestone.MileStoneModifyRequest;
 import com.nhnacademy.testtest.entity.MileStone;
-import com.nhnacademy.testtest.entity.Project;
 import java.util.List;
 
 public interface MileStoneService {
 
-    MileStone createMileStone(CreateMileStoneRequest request, Long projectId);
+    MileStone createMileStone(MileStonePostRequest request);
 
-    MileStone updateMileStone(CreateMileStoneRequest request, Long tagId);
+    MileStone updateMileStone(MileStoneModifyRequest request);
 
     void deleteMileStone(long id);
-    List<MileStoneDto> getAllMileStones();
+    List<MileStone> getAllMileStones();
 
     MileStone getMileStoneById(Long id);
 }

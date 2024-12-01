@@ -1,14 +1,14 @@
-package com.nhnacademy.testtest.dto.milestone;
+package com.nhnacademy.testtest.dto.tag;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class CreateMileStoneRequest {
-    Long id;
+public class TagPostRequest {
 
     String name;
 
     Long projectId;
+
 }

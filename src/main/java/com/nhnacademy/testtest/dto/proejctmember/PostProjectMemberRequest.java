@@ -1,14 +1,15 @@
 package com.nhnacademy.testtest.dto.proejctmember;
 
+import com.nhnacademy.testtest.entity.Project;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class CreateProjectMemberRequest {
+public class PostProjectMemberRequest {
 
-    String id;
     String name;
     String email;
     String role;
+    Project project;
 }

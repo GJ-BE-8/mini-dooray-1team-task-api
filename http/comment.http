@@ -1,0 +1,51 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=IntelliJ IDEA
+
+###Post
+POST http://localhost:8080/api/comment
+Content-Type: application/json
+
+{
+  "content": "이것은 댓글입니다.",
+  "taskId": 1,
+  "userId": 2
+}
+
+###수정
+PUT http://localhost:8080/api/comment
+Content-Type: application/json
+
+{
+  "id": 1,
+  "content": "수정된 댓글 내용입니다."
+}
+
+### 잘못된 아이디
+PUT http://localhost:8080/api/comment
+Content-Type: application/json
+
+{
+  "id": 999999,
+  "content": "수정된 댓글 내용입니다."
+}
+
+###삭제
+DELETE http://localhost:8080/api/comment?id=9
+Content-Type: application/json
+
+###존재하지 않는 아이디 삭제
+DELETE http://localhost:8080/api/comment?id=999999
+Content-Type: application/json
+
+
+
+
+###taskID에 해당하는 comment조회
+
+GET localhost:8080/api/comment?taskId=3
+Content-Type: application/json
+
+### 존재하지 않는 taskId(아무것도 리턴안하고 성공해야함)
+GET http://localhost:8080/api/comment?taskId=999999
+Content-Type: application/json

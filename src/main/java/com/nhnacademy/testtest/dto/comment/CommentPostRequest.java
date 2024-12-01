@@ -1,15 +1,20 @@
 package com.nhnacademy.testtest.dto.comment;
 
+import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class CreateCommentRequest {
+public class CommentPostRequest {
 
     String content;
 
-    String author;
+    Long authorId;
 
-    String date;
+    LocalDateTime date;
+
+    Long taskId;
+
+
 }

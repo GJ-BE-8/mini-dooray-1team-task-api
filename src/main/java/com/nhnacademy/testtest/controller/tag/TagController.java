@@ -1,6 +1,7 @@
 package com.nhnacademy.testtest.controller.tag;
 
-import com.nhnacademy.testtest.dto.tag.CreateTagRequest;
+import com.nhnacademy.testtest.dto.tag.TagPostRequest;
+import com.nhnacademy.testtest.dto.tag.TagModifyRequest;
 import com.nhnacademy.testtest.entity.Tag;
 import com.nhnacademy.testtest.service.tag.TagService;
 import lombok.RequiredArgsConstructor;
@@ -20,20 +21,17 @@ public class TagController {
 
     private final TagService tagService;
 
-
     @PostMapping
-    public ResponseEntity<Tag> createTag(@RequestBody CreateTagRequest request, @RequestParam Long projectId) {
-        tagService.createTag(request, projectId);
-
-        Tag tag = tagService.createTag(request, projectId);
+    public ResponseEntity<Tag> createTag(@RequestBody TagPostRequest request) {
+        Tag tag = tagService.createTag(request);
         return ResponseEntity.ok(tag);
     }
 
 
     @PutMapping
-    public ResponseEntity<Tag> updateTag(@RequestBody CreateTagRequest request, @RequestParam Long tagId) {
+    public ResponseEntity<Tag> updateTag(@RequestBody TagModifyRequest request) {
 
-        Tag tag = tagService.updateTag(request, tagId);
+        Tag tag = tagService.updateTag(request);
         return ResponseEntity.ok(tag);
     }
 

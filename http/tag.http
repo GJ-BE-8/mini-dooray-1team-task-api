@@ -1,0 +1,49 @@
+### 태그 등록
+POST http://localhost:8080/api/tag
+Content-Type: application/json
+
+{
+  "name": "테스트 태그",
+  "projectId": 1
+}
+
+
+### 태그 수정
+PUT http://localhost:8080/api/tag
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "수정된 태그 이름",
+  "projectId": 1
+}
+
+
+### 존재하지 않는 태그 Id
+PUT http://localhost:8080/api/tag
+Content-Type: application/json
+
+{
+  "id": 999999,
+  "name": "수정된 태그 이름",
+  "projectId": 1
+}
+
+### 존재하지 않는 프로젝트 아이디
+PUT http://localhost:8080/api/tag
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "수정된 태그 이름",
+  "projectId": 999999
+}
+
+### 태그 삭제
+DELETE http://localhost:8080/api/tag?tagId=1
+Content-Type: application/json
+
+### 존재하지 않는 태그아이디로 삭제
+DELETE http://localhost:8080/api/tag?tagId=999999
+Content-Type: application/json
+
