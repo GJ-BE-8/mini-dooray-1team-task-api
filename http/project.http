@@ -19,7 +19,7 @@ Content-Type: application/json
     "status": "ACTIVATION"
   },
 
-  "member": {
+  "projectMember": {
     "name": "김주혁",
     "email": "asdf@gmail.com",
     "role" : "ADMIN"
