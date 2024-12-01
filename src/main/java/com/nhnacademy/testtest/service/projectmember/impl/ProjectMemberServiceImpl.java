@@ -6,7 +6,6 @@ import com.nhnacademy.testtest.entity.Role;
 import com.nhnacademy.testtest.exception.ProjectMemberNullPointException;
 
 import com.nhnacademy.testtest.repository.ProjectMemberRepository;
-import com.nhnacademy.testtest.repository.ProjectRepository;
 import com.nhnacademy.testtest.service.projectmember.ProjectMemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

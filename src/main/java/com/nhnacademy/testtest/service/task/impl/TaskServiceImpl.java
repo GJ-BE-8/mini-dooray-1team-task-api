@@ -3,6 +3,7 @@ package com.nhnacademy.testtest.service.task.impl;
 
 import com.nhnacademy.testtest.dto.comment.CommentDto;
 import com.nhnacademy.testtest.dto.task.TaskCommentDTO;
+import com.nhnacademy.testtest.dto.task.TaskDTO;
 import com.nhnacademy.testtest.dto.task.TaskModifyRequest;
 import com.nhnacademy.testtest.dto.task.TaskPostRequest;
 import com.nhnacademy.testtest.entity.*;
@@ -128,6 +129,11 @@ public class TaskServiceImpl implements TaskService {
 
         return taskRepository.findTasksByProject_Id(projectId);
 
+    }
+
+    @Override
+    public List<TaskDTO> getTaskByProjectMemberId(Long projectMemberId) {
+        return taskRepository.findTaskByProjectMemberId(projectMemberId);
     }
 
 }
