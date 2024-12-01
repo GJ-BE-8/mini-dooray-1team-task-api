@@ -10,6 +10,8 @@ import com.nhnacademy.testtest.service.projectmember.ProjectMemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ProjectMemberServiceImpl implements ProjectMemberService {
@@ -34,5 +36,10 @@ public class ProjectMemberServiceImpl implements ProjectMemberService {
         return projectMemberRepository.findById(id).orElseThrow(
                 ()-> new ProjectMemberNullPointException("해당 ID의 ProjectMember가 존재하지 않습니다")
         );
+    }
+
+    @Override
+    public List<ProjectMember> getProjectMemberByProjectId(Long id){
+        return projectMemberRepository.findProjectMembersByProject_Id(id);
     }
 }
