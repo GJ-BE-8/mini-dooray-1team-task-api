@@ -1,29 +1,45 @@
 package com.nhnacademy.testtest.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.Setter;
 
 @Entity
+@NoArgsConstructor
+@Getter
 public class ProjectMember {
 
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String username;
+    @Setter
+    @Column(nullable = false)
+    private String name;
 
+    @Setter
+    @NonNull
     private String email;
 
-    @Column(name = "phone_number")
-    private String phoneNumber;
+    @Setter
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
 
-    private String role;
 
     @ManyToOne
-    @JoinColumn(name = "project_id")
+    @Setter
     private Project project;
 
+    public ProjectMember(String name, String email, Role role, Project project) {
+        this.name = name;
+        this.email = email;
+        this.role = role;
+        this.project = project;
+    }
+
 }
+
+
