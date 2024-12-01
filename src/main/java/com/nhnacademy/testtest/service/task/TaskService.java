@@ -23,4 +23,6 @@ public interface TaskService {
     void update(Task task);
 
     TaskCommentDTO getTaskComment(Long taskId);
+
+    List<Task> getTasksByProjectId(Long projectId);
 }

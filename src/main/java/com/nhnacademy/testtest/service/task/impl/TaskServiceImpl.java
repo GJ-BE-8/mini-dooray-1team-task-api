@@ -123,4 +123,11 @@ public class TaskServiceImpl implements TaskService {
         return taskDTO;
     }
 
+    @Override
+    public List<Task> getTasksByProjectId(Long projectId){
+
+        return taskRepository.findTasksByProject_Id(projectId);
+
+    }
+
 }

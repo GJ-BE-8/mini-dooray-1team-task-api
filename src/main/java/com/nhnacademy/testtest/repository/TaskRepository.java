@@ -22,4 +22,6 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 
     @Query("select new com.nhnacademy.testtest.dto.task.TaskCommentDTO(t.title,t.content,t.mileStone.name, t.tag.name) from Task t left join Comment c on c.task.id = t.id where t.id =:taskId")
     TaskCommentDTO findByTaskId(@Param("taskId") long taskId);
+
+    List<Task> findTasksByProject_Id(long projectId);
 }

@@ -4,6 +4,9 @@ GET http://localhost:8080/task/5
 ### 프로젝트의 task 전체 조회
 GET http://localhost:8080/task?id=1
 
+### 프로젝트 ID 로task 조회
+GET http://localhost:8080/task?projectId=1
+
 ### task 등록
 POST http://localhost:8080/task
 Content-Type: Application/json
