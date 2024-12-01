@@ -13,7 +13,6 @@ public interface ProjectService {
 
     Project createProject(Project project, ProjectMember projectMember);
 
-//    List<ProjectDto> getAllByProjectMemberId(Long projectMemberId);
 
     Project getProjectById(Long projectId);
 }

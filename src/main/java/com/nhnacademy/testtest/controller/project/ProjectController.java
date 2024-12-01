@@ -24,7 +24,6 @@ public class ProjectController {
 
     private final ProjectService projectService;
 
-
     @GetMapping
     public ResponseEntity<List<Project>> getAllProjects(){
 
@@ -41,6 +40,7 @@ public class ProjectController {
         return ResponseEntity.ok(project);
 
     }
+
 
     @PostMapping
     public ResponseEntity<ProjectWithMemberDTO> createProject(@RequestBody ProjectPostRequest createCommendProject) {
